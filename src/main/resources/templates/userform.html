@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>SpringBoot Rocks</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section class="my-2">
+			<div class="container">
+				<form th:object="${appUser}" th:action="@{/appUser/}" method="post">
+					<br />
+
+					<div class="card">
+						<div class="card-header">
+							<h4>Edit User Information</h4>
+						</div>
+						<div class="card-body">
+							<input type="hidden" th:field="*{id}" />
+							<!-- 							<h5 class="card-title"></h5> -->
+							<div class="row">
+								<div class="col-md-3 form-group">
+									<label>Username:</label> <input type="text"
+										class="form-control" th:field="*{username}" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 form-group">
+									<label>Age:</label> <input type="text" class="form-control"
+										th:field="*{userage}" />
+								</div>
+								<div class="col-md-3 form-group">
+									<label>SSN:</label> <input type="text" class="form-control"
+										th:field="*{userssn}" />
+								</div>
+								<div class="col-md-4 form-group">
+									<label>Specialization:</label> <select class="form-control"
+										th:field="*{userexpertise}">
+										<option
+											th:each="expertiseValue : ${T(spring.boot.rocks.domain.Expertise).values()}"
+											th:value="${expertiseValue.name()}"
+											th:text="${expertiseValue.name()}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 form-group">
+									<label>TIN:</label> <input type="text" class="form-control"
+										th:field="*{usertin}" />
+								</div>
+								<div class="col-md-3 form-group">
+									<label>Desination:</label> <input type="text"
+										class="form-control" th:field="*{userdesignation}" />
+								</div>
+								<div class="col-md-4 form-group">
+									<label>Blog:</label> <input type="text" class="form-control"
+										th:field="*{userblog}" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 form-group">
+									<label>About:</label>
+									<textarea class="form-control" rows="2"
+										th:field="*{useraboutme}"></textarea>
+								</div>
+								<!-- 							<a href="#" class="btn btn-primary">Go somewhere</a> -->
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</section>
+	</div>
+</body>
+</html>

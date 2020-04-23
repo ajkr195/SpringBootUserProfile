@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>SpringBoot Rocks</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section class="my-2">
+			<div class="container">
+				<!--<a href="/">Home</a> -->
+				<br />
+				<div class="card">
+					<div class="card-header">
+						<h4>User Details</h4>
+					</div>
+					<div class="card-body">
+						<!--<h6 class="card-title">User Details</h6> -->
+						<!--<hr /> -->
+						<div th:if="${appUser.userpicture == null}">
+											<img th:src="@{/images/defaultuser.jpg}" width="200"
+												height="200" /> <a href="#"
+												th:href="@{'/appUser/' + ${appUser.id} + '/image'}"
+												role="button">Upload</a>
+										</div>
+										<div th:if="${appUser.userpicture != null}">
+											<img
+												th:src="@{'/appUser/' + ${appUser.id} + '/appUserimage'}"
+												width="200"
+												height="200" /> <a href="#"
+												th:href="@{'/appUser/' + ${appUser.id} + '/image'}"
+												role="button">Change</a>
+										</div>
+						
+						
+						
+						
+						<!-- <p class="card-text">With supporting text below as a natural -->
+						<!-- lead-in to additional content.</p> -->
+						<hr />
+						<div class="row">
+							<div class="col-md-3">
+								<h6>UserID:</h6>
+							</div>
+							<div class="col-md-3">
+								<p th:text="${appUser.id}"></p>
+							</div>
+							<div class="col-md-3">
+								<h6>Username:</h6>
+							</div>
+							<div class="col-md-3">
+								<p th:text="${appUser.username}"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<h6>Age:</h6>
+							</div>
+							<div class="col-md-3">
+								<p th:text="${appUser.userage}"></p>
+							</div>
+							<div class="col-md-3">
+								<h6>Expertise:</h6>
+							</div>
+							<div class="col-md-3">
+								<p th:text="${appUser.userexpertise}"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<h6>SSN:</h6>
+							</div>
+							<div class="col-md-3">
+								<p th:text="${appUser.userssn}"></p>
+							</div>
+							<div class="col-md-3">
+								<h6>TIN:</h6>
+							</div>
+							<div class="col-md-3">
+								<p th:text="${appUser.usertin}"></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-1">
+								<h6>Blog:</h6>
+							</div>
+							<div class="col-md-6">
+								<a href="https://github.com/ajkr195?tab=repositories" target="_blank" th:text="${appUser.userblog}"></a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-1">
+								<h6>About:</h6>
+							</div>
+							<div class="col-md-6">
+								<p th:text="${appUser.useraboutme}"></p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</div>
+</body>
+</html>

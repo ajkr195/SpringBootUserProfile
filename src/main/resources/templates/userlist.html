@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>SpringBoot Rocks</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section class="my-2">
+			<div class="container">
+				<br />
+				<div class="card">
+					<div class="card-header">
+						<h4>Users</h4>
+					</div>
+					<div class="card-body">
+						<!--<h5 class="card-title">Special title treatment</h5> -->
+						<div class="table-responsive"
+							th:if="${not #lists.isEmpty(appUsers)}">
+							<table class="table table-hover ">
+								<thead class="thead-inverse">
+									<tr>
+										<th>ID</th>
+										<th>Username</th>
+										<th>Age</th>
+										<th>SSN</th>
+										<th>TIN</th>
+										<!--<th>User Picture from Resource</th> -->
+										<!--<th>User Picture from Database</th> -->
+										<th>User Picture</th>
+										<th>View</th>
+										<th>Update</th>
+										<th>Delete</th>
+									</tr>
+								</thead>
+								<tr th:each="appUser : ${appUsers}">
+									<td th:text="${appUser.id}"></td>
+									<td th:text="${appUser.username}"></td>
+									<td th:text="${appUser.userage}"></td>
+									<td th:text="${appUser.userssn}"></td>
+									<td th:text="${appUser.usertin}"></td>
+									<!--<td><img th:src="@{/images/defaultuser.jpg}" width="40" height="40"/></td> -->
+									<td>
+										<div th:if="${appUser.userpicture == null}">
+											<img th:src="@{/images/defaultuser.jpg}" width="40"
+												height="40" /> <a href="#"
+												th:href="@{'/appUser/' + ${appUser.id} + '/image'}"
+												role="button">Upload</a>
+										</div>
+										<div th:if="${appUser.userpicture != null}">
+											<img
+												th:src="@{'/appUser/' + ${appUser.id} + '/appUserimage'}"
+												width="40" height="40" /> <a href="#"
+												th:href="@{'/appUser/' + ${appUser.id} + '/image'}"
+												role="button">Change</a>
+										</div>
+									</td>
+									<!-- <td><img th:src="${appuser.userpicture} == null ? _ : @{'data:image/jpeg;base64,'+ ${appuser.userpicture}}"/></td>  -->
+									<td><a class="btn btn-sm btn-info" href="#"
+										th:href="@{'/appUser/' + ${appUser.id} + '/show'}">View
+											Details</a></td>
+									<td><a class="btn btn-sm btn-warning" href="#"
+										th:href="@{'/appUser/' + ${appUser.id} + '/update'}">Edit</a></td>
+									<td><a class="btn btn-sm btn-danger" href="#"
+										th:href="@{'/appUser/' + ${appUser.id} + '/delete'}">Delete</a></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</div>
+</body>
+</html>

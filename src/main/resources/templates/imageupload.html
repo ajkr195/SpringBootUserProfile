@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<title>SpringBoot Rocks</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section class="my-2">
+			<div class="container">
+				<div class="card">
+					<div class="card-header">
+						<h4>Upload new image</h4>
+					</div>
+					<div class="card-body">
+						<!--<h5 class="card-title">Special title treatment</h5> -->
+						<br />
+						<div class="row">
+							<div class="col-md-5">
+								<form action="/" method="post" enctype="multipart/form-data"
+									th:action="@{'/appUser/' + ${appUser.getId()} + '/image'}">
+									<label class="control-label">Select Picture</label> <input
+										id="userPicturefile" name="userPicturefile" type="file"
+										class="file"> <br /> <br />
+									<button type="submit" class="btn btn-sm btn-primary">Submit</button>
+									<a class="btn btn-sm btn-secondary" href="/">Cancel</a>
+								</form>
+							</div>
+						</div>
+						<!--<a href="#" class="btn btn-primary">Go somewhere</a> -->
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>
